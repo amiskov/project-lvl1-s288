@@ -1,7 +1,6 @@
 {
     "name": "amiskov/brain-games",
     "description": "Hexlet project.",
-    "type": "project",
     "authors": [
     {
         "name": "Andrey Miskov",
