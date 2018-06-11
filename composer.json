@@ -2,10 +2,11 @@
     "name": "amiskov/brain-games",
     "description": "Hexlet project.",
     "authors": [
-    {
-        "name": "Andrey Miskov",
-        "email": "amiskov@gmail.com"
-    }],
+        {
+            "name": "Andrey Miskov",
+            "email": "amiskov@gmail.com"
+        }
+    ],
     "bin": [
         "bin/brain-games"
     ],
