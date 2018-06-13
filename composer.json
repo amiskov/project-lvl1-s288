@@ -12,10 +12,14 @@
         "phpcbf": "phpcbf"
     },
     "autoload": {
-        "files": ["src/Cli.php"]
+        "files": [
+            "src/Cli.php",
+            "src/BrainEven.php"
+        ]
     },
     "bin": [
-        "bin/brain-games"
+        "bin/brain-games",
+        "bin/brain-even"
     ],
     "require":
     {

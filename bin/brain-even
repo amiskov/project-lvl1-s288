@@ -3,4 +3,4 @@
 
 require_once './src/autoload.php';
 
-\BrainGames\Cli\run();
+\BrainGames\BrainEven\run();
