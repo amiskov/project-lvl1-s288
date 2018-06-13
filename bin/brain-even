@@ -1,6 +1,6 @@
 #!/usr/bin/env php
 <?php
 
-require_once './src/autoload.php';
+require_once __DIR__ . '/../src/autoload.php';
 
 \BrainGames\BrainEven\run();
