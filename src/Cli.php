@@ -6,11 +6,16 @@ use function \cli\prompt;
 
 const ATTEMPTS = 3;
 
-function run($gameNameSpace, $gameDescription)
+function run(...$args)
 {
-    $userName = greet($gameDescription);
-    $roundLauncher = $gameNameSpace . "\\startRound";
+    if (empty($args)) {
+        greet();
+        return false;
+    }
 
+    [$gameNameSpace, $gameDescription] = $args;
+    $userName = greet($gameDescription);
+    $roundLauncher = "{$gameNameSpace}\\startRound";
     $roundsCount = 0;
 
     for ($i = 1; $i <= ATTEMPTS; $i++) {
@@ -26,6 +31,8 @@ function run($gameNameSpace, $gameDescription)
     if ($roundsCount == ATTEMPTS) {
         line("%W%2 Congratulations, {$userName}! %n");
     }
+
+    return true;
 }
 
 function greet(string $gameDescription = '')
