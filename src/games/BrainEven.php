@@ -12,7 +12,8 @@ function getGameInfo()
 {
     return [
         'ns' => __NAMESPACE__,
-        'description' => "Answer %B" . POSITIVE_ANSWER . "%n if number is even otherwise answer %B". NEGATIVE_ANSWER . "%n."
+        'description' => "Answer %B" . POSITIVE_ANSWER . "%n if number is even otherwise answer %B"
+                         . NEGATIVE_ANSWER . "%n."
     ];
 }
 
