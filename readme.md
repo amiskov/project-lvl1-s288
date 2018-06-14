@@ -8,7 +8,7 @@
 Установка:
 
 ```bash
-composer require amiskov/brain-games:dev-master
+composer require amiskov/brain-games
 ```
 
 Запуск:
