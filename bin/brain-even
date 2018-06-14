@@ -1,6 +1,10 @@
 #!/usr/bin/env php
 <?php
-
 require_once __DIR__ . '/../src/autoload.php';
 
-\BrainGames\BrainEven\run();
+$gameInfo = BrainGames\BrainEven\getGameInfo();
+
+\BrainGames\Cli\run(
+    $gameInfo['ns'],
+    $gameInfo['description']
+);
