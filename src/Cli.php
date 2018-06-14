@@ -37,7 +37,7 @@ function run(...$args)
 
 function greet(string $gameDescription = '')
 {
-    line("%W%4 Welcome to the Brain Game! %n");
+    line("%W%4 Welcome to the Brain Games! %n");
     line($gameDescription . PHP_EOL);
 
     $userName = prompt('May I have your name?', false, ' ');
