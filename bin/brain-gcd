@@ -1,0 +1,10 @@
+#!/usr/bin/env php
+<?php
+require_once __DIR__ . '/../src/autoload.php';
+
+$gameInfo = BrainGames\BrainGcd\getGameInfo();
+
+\BrainGames\Cli\run(
+    $gameInfo['ns'],
+    $gameInfo['description']
+);

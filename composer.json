@@ -16,13 +16,15 @@
             "src/Cli.php",
             "src/utils.php",
             "src/games/BrainEven.php",
-            "src/games/BrainCalc.php"
+            "src/games/BrainCalc.php",
+            "src/games/BrainGcd.php"
         ]
     },
     "bin": [
         "bin/brain-games",
         "bin/brain-even",
-        "bin/brain-calc"
+        "bin/brain-calc",
+        "bin/brain-gcd"
     ],
     "require":
     {
