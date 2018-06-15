@@ -17,14 +17,16 @@
             "src/utils.php",
             "src/games/BrainEven.php",
             "src/games/BrainCalc.php",
-            "src/games/BrainGcd.php"
+            "src/games/BrainGcd.php",
+            "src/games/BrainBalance.php"
         ]
     },
     "bin": [
         "bin/brain-games",
         "bin/brain-even",
         "bin/brain-calc",
-        "bin/brain-gcd"
+        "bin/brain-gcd",
+        "bin/brain-balance"
     ],
     "require":
     {
