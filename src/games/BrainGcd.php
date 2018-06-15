@@ -5,7 +5,7 @@ use function BrainGames\Gameplay\startNewGame;
 
 const MIN = 1;
 const MAX = 100;
-const DESCRIPTION = "Find the greatest common divisor of given numbers";
+const DESCRIPTION = "Find the greatest common divisor of given numbers.";
 
 function gcd($a, $b)
 {
@@ -22,6 +22,7 @@ function run()
     };
 
     $answer = function ($question) {
+        [$num1, $num2] = explode(" ", $question);
         return gcd($num1, $num2);
     };
 
