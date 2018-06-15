@@ -10,7 +10,7 @@ const FAIL_MSG = "\"%s\" is wrong answer :( Correct answer was \"%s\".\nLet's tr
 const WIN_MSG = "%GCorrect!%n";
 const ATTEMPTS = 3;
 
-function startNewGame(string $gameDescription, \Closure $questionGenerator, \Closure $answerFinder)
+function startNewGame(string $gameDescription, \Closure $getQuestion, \Closure $getCorrectAnswer)
 {
     showMessage(WELCOME_MSG . PHP_EOL . $gameDescription . PHP_EOL);
     $userName = getUserInput('May I have your name?');
@@ -19,10 +19,10 @@ function startNewGame(string $gameDescription, \Closure $questionGenerator, \Clo
     $roundsCount = 0;
 
     for ($i = 1; $i <= ATTEMPTS; $i++) {
-        $question = $questionGenerator();
+        $question = $getQuestion();
         showMessage("Question: {$question}");
         $userAnswer = getUserInput("Your answer");
-        $correctAnswer = $answerFinder($question);
+        $correctAnswer = $getCorrectAnswer($question);
 
         if ($userAnswer != $correctAnswer) {
             showMessage(sprintf(FAIL_MSG, $userAnswer, $correctAnswer, $userName));
