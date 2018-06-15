@@ -1,31 +1,34 @@
 <?php
 namespace BrainGames\BrainCalc;
 
-use function BrainGames\Cli\showRoundResults;
-use function BrainGames\Cli\getUserAnswer;
-use function BrainGames\utils\getRandomNumber;
+use function BrainGames\Gameplay\startNewGame;
 
+const MIN = 1;
+const MAX = 100;
 const OPERATIONS = ['+', '-', '*'];
+const DESCRIPTION = "What is the result of the expression?";
 
-function getGameInfo()
+function run()
 {
-    return [
-        'ns' => __NAMESPACE__,
-        'description' => 'What is the result of the expression?'
-    ];
-}
+    $question = function () {
+        return rand(MIN, MAX) . ' ' . OPERATIONS[rand(0, count(OPERATIONS) - 1)] . ' ' . rand(MIN, MAX);
+    };
 
-function getRandomOperation()
-{
-    return OPERATIONS[rand(0, count(OPERATIONS) - 1)];
-}
+    $answer = function ($question) {
+        [$num1, $operator, $num2] = explode(" ", $question);
 
-function startRound($userName)
-{
-    $question = getRandomNumber() . getRandomOperation() . getRandomNumber();
+        switch ($operator) {
+            case '+':
+                return $num1 + $num2;
+                break;
+            case '*':
+                return $num1 * $num2;
+                break;
+            case '-':
+                return $num1 - $num2;
+                break;
+        }
+    };
 
-    $userAnswer = getUserAnswer($question);
-    $correctAnswer = eval("return $question;");
-
-    return showRoundResults($userName, $userAnswer, $correctAnswer);
+    return startNewGame(DESCRIPTION, $question, $answer);
 }
