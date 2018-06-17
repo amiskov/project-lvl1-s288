@@ -1,34 +1,29 @@
 <?php
 namespace BrainGames\BrainEven;
 
-use function BrainGames\Cli\getUserAnswer;
-use function BrainGames\Cli\showRoundResults;
-use function BrainGames\utils\getRandomNumber;
+use function BrainGames\Gameplay\startNewGame;
 
+const MIN = 1;
+const MAX = 100;
 const POSITIVE_ANSWER = "yes";
 const NEGATIVE_ANSWER = "no";
+const DESCRIPTION = "Answer %B" . POSITIVE_ANSWER . "%n if number is even otherwise answer %B". NEGATIVE_ANSWER . "%n.";
 
-function getGameInfo()
+function isEven($number)
 {
-    return [
-        'ns' => __NAMESPACE__,
-        'description' => "Answer %B" . POSITIVE_ANSWER . "%n if number is even otherwise answer %B"
-                         . NEGATIVE_ANSWER . "%n."
-    ];
+    return $number % 2 == 0;
 }
 
-function startRound($userName)
+function run()
 {
-    $question = getRandomNumber();
+    $getGameData = function () {
+        $question = rand(MIN, MAX);
 
-    $userAnswer = getUserAnswer($question);
-    $correctAnswer = getCorrectAnswer($question);
+        return [
+            'question' => $question,
+            'answer' => isEven($question) ? POSITIVE_ANSWER : NEGATIVE_ANSWER
+        ];
+    };
 
-    return showRoundResults($userName, $userAnswer, $correctAnswer);
-}
-
-function getCorrectAnswer($question)
-{
-    $isEven = $question % 2 === 0;
-    return $isEven ? POSITIVE_ANSWER : NEGATIVE_ANSWER;
+    return startNewGame(DESCRIPTION, $getGameData);
 }

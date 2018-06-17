@@ -1,31 +1,40 @@
 <?php
 namespace BrainGames\BrainCalc;
 
-use function BrainGames\Cli\showRoundResults;
-use function BrainGames\Cli\getUserAnswer;
-use function BrainGames\utils\getRandomNumber;
+use function BrainGames\Gameplay\startNewGame;
 
+const MIN = 1;
+const MAX = 100;
 const OPERATIONS = ['+', '-', '*'];
+const DESCRIPTION = "What is the result of the expression?";
 
-function getGameInfo()
+function run()
 {
-    return [
-        'ns' => __NAMESPACE__,
-        'description' => 'What is the result of the expression?'
-    ];
-}
+    function getAnswer($question)
+    {
+        [$num1, $operator, $num2] = explode(" ", $question);
 
-function getRandomOperation()
-{
-    return OPERATIONS[rand(0, count(OPERATIONS) - 1)];
-}
+        switch ($operator) {
+            case '+':
+                return $num1 + $num2;
+            case '*':
+                return $num1 * $num2;
+            case '-':
+                return $num1 - $num2;
+            default:
+                return null;
+        }
+    }
 
-function startRound($userName)
-{
-    $question = getRandomNumber() . getRandomOperation() . getRandomNumber();
+    $getGameData = function () {
+        $question = rand(MIN, MAX) . ' ' . OPERATIONS[rand(0, count(OPERATIONS) - 1)] . ' ' . rand(MIN, MAX);
 
-    $userAnswer = getUserAnswer($question);
-    $correctAnswer = eval("return $question;");
+        return [
+            'question' => $question,
+            'answer' => getAnswer($question)
+        ];
+    };
 
-    return showRoundResults($userName, $userAnswer, $correctAnswer);
+
+    return startNewGame(DESCRIPTION, $getGameData);
 }

@@ -1,6 +1,4 @@
 #!/usr/bin/env php
 <?php
-
 require_once __DIR__ . '/../src/autoload.php';
-
-\BrainGames\Cli\run();
+\BrainGames\BrainGames\greet();
