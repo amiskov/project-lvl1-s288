@@ -13,7 +13,7 @@ const ATTEMPTS = 3;
 function startNewGame(string $gameDescription, \Closure $getGameData)
 {
     line(WELCOME_MSG . PHP_EOL . $gameDescription . PHP_EOL);
-    $userName = prompt('May I have your name?');
+    $userName = prompt('May I have your name?', false, ' ');
     line("Hello, {$userName}!\n");
 
     $roundsCount = 0;

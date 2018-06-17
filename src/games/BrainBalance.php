@@ -1,62 +1,68 @@
 <?php
-namespace BrainGames\BrainCalc;
+namespace BrainGames\BrainBalance;
 
-use function BrainGames\Cli\showRoundResults;
-use function BrainGames\Cli\getUserAnswer;
-use function BrainGames\utils\getRandomNumber;
+use function BrainGames\Gameplay\startNewGame;
 
-function getGameInfo()
+const MIN = 100;
+const MAX = 9999;
+const DESCRIPTION = 'Balance the given number.';
+
+function isDigitsBalanced(array $digits): bool
 {
-    return [
-        'ns' => __NAMESPACE__,
-        'description' => 'Balance the given number.'
-    ];
+    return max($digits) - min($digits) > 1 && isDigitsOrderRight($digits);
 }
 
-function isBalanced($number)
+function isDigitsOrderRight(array $digits): bool
 {
-    $digits = str_split($number);
+    if (empty($digits)) {
+        return true;
+    }
+
+    $lastDigit = array_pop($digits);
+    $penultimateDigit = $digits[count($digits) - 1];
+
+    return $lastDigit >= $penultimateDigit && isDigitsOrderRight($digits);
+}
+
+function balanceDigits(array $digits): array
+{
+    if (isDigitsBalanced($digits)) {
+        return $digits;
+    }
+
     $max = max($digits);
     $min = min($digits);
 
-    if ($max - $min > 1) {
-        return false;
-    }
+    $lastMinPosition = max(array_keys($digits, $min));
+    $firstMaxPos = array_search($max, $digits);
 
-    function checkIfBalanced($stack) {
-        if($stack == []) {
-            return true;
-        }
+    $digits[$firstMaxPos] = $max - 1;
+    $digits[$lastMinPosition] = $min + 1;
 
-        $lastDigit = array_pop($stack);
-        $penultimateDigit = $stack[count($stack) - 1];
-
-        return $lastDigit >= $penultimateDigit && checkIfBalanced($stack);
-    }
-
-    return checkIfBalanced($digits);
+    return balanceDigits($digits);
 }
 
-function balanceNumber($number)
+function balanceNumber(int $number): int
 {
-    if (isBalanced($number)) {
+    $digits = str_split($number);
+
+    if (isDigitsBalanced($digits)) {
         return $number;
     }
 
-    $digits = str_split($number);
-
-    function balanceNumberInner($digits) {
-        $max = max($digits);
-        $min = min($digits);
-    }
+    return (int) join('', balanceDigits($digits));
 }
 
-function startRound($userName)
+function run()
 {
-    $question = getRandomNumber();
+    $getGameData = function () {
+        $question = rand(MIN, MAX);
 
-    $userAnswer = getUserAnswer($question);
-    $correctAnswer = balanceNumber($question);
+        return [
+            'question' => $question,
+            'answer' => balanceNumber($question)
+        ];
+    };
 
-    return showRoundResults($userName, $userAnswer, $correctAnswer);
+    return startNewGame(DESCRIPTION, $getGameData);
 }
