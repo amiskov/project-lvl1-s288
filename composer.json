@@ -19,7 +19,8 @@
             "src/games/BrainCalc.php",
             "src/games/BrainGcd.php",
             "src/games/BrainBalance.php",
-            "src/games/BrainProgression.php"
+            "src/games/BrainProgression.php",
+            "src/games/BrainPrime.php"
         ]
     },
     "bin": [
@@ -28,7 +29,8 @@
         "bin/brain-calc",
         "bin/brain-gcd",
         "bin/brain-balance",
-        "bin/brain-progression"
+        "bin/brain-progression",
+        "bin/brain-prime"
     ],
     "require":
     {
