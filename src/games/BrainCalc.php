@@ -10,25 +10,31 @@ const DESCRIPTION = "What is the result of the expression?";
 
 function run()
 {
-    $question = function () {
-        return rand(MIN, MAX) . ' ' . OPERATIONS[rand(0, count(OPERATIONS) - 1)] . ' ' . rand(MIN, MAX);
-    };
-
-    $answer = function ($question) {
+    function getAnswer($question)
+    {
         [$num1, $operator, $num2] = explode(" ", $question);
 
         switch ($operator) {
             case '+':
                 return $num1 + $num2;
-                break;
             case '*':
                 return $num1 * $num2;
-                break;
             case '-':
                 return $num1 - $num2;
-                break;
+            default:
+                return null;
         }
+    }
+
+    $getGameData = function () {
+        $question = rand(MIN, MAX) . ' ' . OPERATIONS[rand(0, count(OPERATIONS) - 1)] . ' ' . rand(MIN, MAX);
+
+        return [
+            'question' => $question,
+            'answer' => getAnswer($question)
+        ];
     };
 
-    return startNewGame(DESCRIPTION, $question, $answer);
+
+    return startNewGame(DESCRIPTION, $getGameData);
 }
