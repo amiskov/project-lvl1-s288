@@ -14,17 +14,14 @@ function gcd($a, $b)
 
 function run()
 {
-    $question = function () {
-        $num1 = rand(MIN, MAX);
-        $num2 = rand(MIN, MAX);
+    $getGameData = function () {
+        $question = [rand(MIN, MAX), rand(MIN, MAX)];
 
-        return "{$num1} {$num2}";
+        return [
+            'question' => join(" ", $question),
+            'answer' => gcd(...$question)
+        ];
     };
 
-    $answer = function ($question) {
-        [$num1, $num2] = explode(" ", $question);
-        return gcd($num1, $num2);
-    };
-
-    startNewGame(DESCRIPTION, $question, $answer);
+    startNewGame(DESCRIPTION, $getGameData);
 }
