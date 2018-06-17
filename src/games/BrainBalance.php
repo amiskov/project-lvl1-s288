@@ -9,7 +9,7 @@ const DESCRIPTION = 'Balance the given number.';
 
 function isDigitsBalanced(array $digits): bool
 {
-    return max($digits) - min($digits) > 1 && isDigitsOrderRight($digits);
+    return max($digits) - min($digits) <= 1 && isDigitsOrderRight($digits);
 }
 
 function isDigitsOrderRight(array $digits): bool
