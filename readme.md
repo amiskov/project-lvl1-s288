@@ -16,3 +16,7 @@ composer require amiskov/brain-games
 ```bash
 ./bin/brain-games
 ```
+
+Пример игры:
+
+<script src="https://asciinema.org/a/knFaeGSEnWMGE6BhHGrDvVC21.js" id="asciicast-knFaeGSEnWMGE6BhHGrDvVC21" async></script>
