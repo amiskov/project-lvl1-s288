@@ -14,9 +14,14 @@ composer require amiskov/brain-games
 Запуск:
 
 ```bash
-./bin/brain-games
+./bin/brain-even
+./bin/brain-calc
+./bin/brain-gcd
+./bin/brain-balance
+./bin/brain-progression
+./bin/brain-prime
 ```
 
 Пример игры:
 
-[![asciicast](https://asciinema.org/a/knFaeGSEnWMGE6BhHGrDvVC21.png)](https://asciinema.org/a/knFaeGSEnWMGE6BhHGrDvVC21)
+![](brain-even-example.gif)
