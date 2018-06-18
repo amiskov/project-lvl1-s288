@@ -32,7 +32,7 @@ function run()
 
         return [
             'question' => join(", ", $progression),
-            'answer' => $answer
+            'answer' => (string) $answer
         ];
     };
 

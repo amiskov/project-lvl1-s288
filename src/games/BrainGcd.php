@@ -19,7 +19,7 @@ function run()
 
         return [
             'question' => join(" ", $question),
-            'answer' => gcd(...$question)
+            'answer' => (string) gcd(...$question)
         ];
     };
 

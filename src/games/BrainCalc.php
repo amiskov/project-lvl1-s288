@@ -31,7 +31,7 @@ function run()
 
         return [
             'question' => $question,
-            'answer' => getAnswer($question)
+            'answer' => (string) getAnswer($question)
         ];
     };
 

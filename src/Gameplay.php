@@ -23,18 +23,13 @@ function startNewGame(string $gameDescription, \Closure $getGameData)
         line("Question: {$question}");
         $userAnswer = prompt("Your answer");
 
-        if ($userAnswer != $correctAnswer) {
-            line(sprintf(FAIL_MSG, $userAnswer, $correctAnswer, $userName));
-            break;
+        if ($userAnswer !== $correctAnswer) {
+            return line(sprintf(FAIL_MSG, $userAnswer, $correctAnswer, $userName));
         }
 
         line(WIN_MSG);
         $roundsCount += 1;
     }
 
-    if ($roundsCount == ATTEMPTS) {
-        line("%W%2 Congratulations, {$userName}! %n");
-    }
-
-    return true;
+    line("%W%2 Congratulations, {$userName}! %n");
 }
